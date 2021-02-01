@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: check
-        uses: grandcolline/golang-github-actions@v1.1.0
+        uses: grandcolline/golang-github-actions@v1
         with:
           run: vet
           token: ${{ secrets.GITHUB_TOKEN }}
