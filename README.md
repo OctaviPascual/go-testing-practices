@@ -1,6 +1,10 @@
 # go-testing-practices
 Examples of testing practices in Go
 
+## Benchmark
+
+Example of how to use [benchmarks](https://dave.cheney.net/2013/06/30/how-to-write-benchmarks-in-go).
+
 ## Cleanup
 
 Example of how to use [t.Cleanup function](https://tip.golang.org/pkg/testing/#T.Cleanup).
