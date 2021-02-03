@@ -20,3 +20,7 @@ Example of how to use [testify mock](https://pkg.go.dev/github.com/stretchr/test
 ## Table based
 
 Example of how to use [table based tests](https://dave.cheney.net/2019/05/07/prefer-table-driven-tests).
+
+## Ticker
+
+Example of how to test [time.Ticker](https://golang.org/pkg/time/#NewTicker) running in a separate goroutine.
