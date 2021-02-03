@@ -29,9 +29,9 @@ type userRepository interface {
 	save(user *user) error
 }
 
-type fakeUserRepository struct{}
+type printUserRepository struct{}
 
-func (*fakeUserRepository) save(user *user) error {
+func (*printUserRepository) save(user *user) error {
 	fmt.Printf("saved user %+v", user)
 	return nil
 }
@@ -56,7 +56,7 @@ func (uc *userCreator) create(id int64, name string) error {
 }
 
 func main() {
-	userCreator := newUserCreator(&fakeUserRepository{})
+	userCreator := newUserCreator(&printUserRepository{})
 	err := userCreator.create(1, "John")
 	if err != nil {
 		log.Fatalf("could not create user: %s", err)
