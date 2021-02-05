@@ -25,6 +25,10 @@ Example of how to use [testify mock](https://pkg.go.dev/github.com/stretchr/test
 
 Example of how to use [t.Parallel function](https://gist.github.com/posener/92a55c4cd441fc5e5e85f27bca008721).
 
+## Spy
+
+Example of how to add a spy test double.
+
 ## Stub
 
 Example of how to add a [stub test double](https://ieftimov.com/post/testing-in-go-test-doubles-by-example/).
