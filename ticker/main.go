@@ -17,24 +17,23 @@ type greeter struct {
 	tickerC <-chan time.Time
 }
 
-func newGreeter(ctx context.Context, writer io.StringWriter, interval time.Duration) *greeter {
+func newGreeter(writer io.StringWriter, interval time.Duration) *greeter {
 	ticker := time.NewTicker(interval)
 
 	return &greeter{
-		ctx:     ctx,
 		writer:  writer,
 		ticker:  ticker,
 		tickerC: ticker.C,
 	}
 }
 
-func (g *greeter) run() {
+func (g *greeter) run(ctx context.Context) {
 	go func() {
 		for {
 			select {
 			case <-g.tickerC:
 				_, _ = g.writer.WriteString("Hello world!\n")
-			case <-g.ctx.Done():
+			case <-ctx.Done():
 				g.ticker.Stop()
 				return
 			}
@@ -43,11 +42,12 @@ func (g *greeter) run() {
 }
 
 func main() {
+	greeter := newGreeter(os.Stdout, time.Second)
+
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
-	greeter := newGreeter(ctx, os.Stdout, time.Second)
-	greeter.run()
+	greeter.run(ctx)
 
 	<-ctx.Done()
 }

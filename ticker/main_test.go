@@ -28,16 +28,16 @@ func (b *safeBuffer) String() string {
 }
 
 func Test(t *testing.T) {
-	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
-
 	var buffer safeBuffer
-	greeter := newGreeter(ctx, &buffer, time.Hour)
+	greeter := newGreeter(&buffer, time.Hour)
 
 	tickerC := make(chan time.Time)
 	greeter.tickerC = tickerC
 
-	greeter.run()
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	greeter.run(ctx)
 
 	tickerC <- time.Now()
 	f := func() bool { return assert.ObjectsAreEqual("Hello world!\n", buffer.String()) }
