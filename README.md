@@ -13,6 +13,10 @@ Example of how to use [t.Cleanup function](https://tip.golang.org/pkg/testing/#T
 
 Example of how to use [data files](https://dave.cheney.net/2016/05/10/test-fixtures-in-go).
 
+## Dummy
+
+Example of how to use a dummy double.
+
 ## Mock
 
 Example of how to use [testify mock](https://pkg.go.dev/github.com/stretchr/testify/mock).
