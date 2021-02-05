@@ -8,11 +8,12 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-type fakeUserRepository struct {
+type stubUserRepository struct {
+	// use this function to override stub default implementation
 	findAll func() ([]*user, error)
 }
 
-func (f fakeUserRepository) FindAll() ([]*user, error) {
+func (f stubUserRepository) FindAll() ([]*user, error) {
 	if f.findAll != nil {
 		return f.findAll()
 	}
@@ -25,7 +26,7 @@ func (f fakeUserRepository) FindAll() ([]*user, error) {
 
 func TestUserFinderFindShould(t *testing.T) {
 	t.Run("successfully find an existing user", func(t *testing.T) {
-		userFinder := newUserFinder(fakeUserRepository{})
+		userFinder := newUserFinder(stubUserRepository{})
 
 		user, err := userFinder.find(1)
 		require.NoError(t, err)
@@ -34,7 +35,7 @@ func TestUserFinderFindShould(t *testing.T) {
 	})
 
 	t.Run("return an error when repository returns an error", func(t *testing.T) {
-		userFinder := newUserFinder(fakeUserRepository{
+		userFinder := newUserFinder(stubUserRepository{
 			findAll: func() ([]*user, error) {
 				return nil, errors.New("always fail")
 			},
@@ -45,7 +46,7 @@ func TestUserFinderFindShould(t *testing.T) {
 	})
 
 	t.Run("return an error when user doesn't exist", func(t *testing.T) {
-		userFinder := newUserFinder(fakeUserRepository{})
+		userFinder := newUserFinder(stubUserRepository{})
 
 		_, err := userFinder.find(3)
 		require.Error(t, err)
