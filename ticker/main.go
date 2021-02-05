@@ -9,8 +9,6 @@ import (
 
 // greeter writes greeting messages at every given interval
 type greeter struct {
-	ctx context.Context
-
 	writer io.StringWriter
 
 	ticker  *time.Ticker
