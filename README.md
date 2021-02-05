@@ -21,6 +21,10 @@ Example of how to add a [fake test double](https://ieftimov.com/post/testing-in-
 
 Example of how to use [testify mock](https://pkg.go.dev/github.com/stretchr/testify/mock).
 
+## Parallel
+
+Example of how to use [t.Parallel function](https://gist.github.com/posener/92a55c4cd441fc5e5e85f27bca008721).
+
 ## Table based
 
 Example of how to use [table based tests](https://dave.cheney.net/2019/05/07/prefer-table-driven-tests).
